@@ -4,10 +4,13 @@
 
 #include "Date.h"
 Date Date::generateRandomdate() {
-    Date az(rand()%32,rand()%13,rand()%10000,rand()%25,rand()%61,rand()%61);
-    srand(time(NULL));
-    az.IsAValidDate();
-    return az;
+    Date ad;
+    do{
+        srand(time(0));
+        ad= new Date(rand()%32,rand()%13,rand()%10000,rand()%24,rand()%60,rand()%60);
+    }while(ad.IsAValidDate());
+        return ad;
+
 }
 
 
@@ -96,5 +99,20 @@ bool Date::IsAValidDate() {
     }else{
         return isvalidDate;
     }
+}
+
+Date Date::operator=(Date *rhs) {
+    setdate(rhs->day,rhs->month,rhs->year);
+    setTimeofDay(rhs->hour,rhs->minute,rhs->seconds);
+    return *this;
+}
+
+bool Date::operator==(const Date &rhs) const {
+    if(year==rhs.year && month==rhs.month && day==rhs.day && hour==rhs.hour && minute==rhs.minute && seconds==rhs.seconds){
+        return true;
+    }else{
+        return false;
+    }
+
 }
 

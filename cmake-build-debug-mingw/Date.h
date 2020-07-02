@@ -128,6 +128,11 @@ public:
 
     bool operator>=(const Date &rhs) const;
 
+    Date operator=(Date *rhs);
+    bool operator==(const Date &rhs) const;
+
+
+
     void setdate(int i, int j, int k);
     void setTimeofDay(int l,int m,int n);
 };
